@@ -1,4 +1,4 @@
-;    boot.asm - Initial 512 bytes of the Legacy BIOS Bootloader for c0rry 
+;    boot.asm, rlm_print.asm, read_disk.asm, extended.asm - Legacy BIOS Bootloader for c0rry 
 ;    Copyright (C) 2022  1nekomata
 ;
 ;    This program is free software: you can redistribute it and/or modify
