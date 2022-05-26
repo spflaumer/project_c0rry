@@ -24,4 +24,4 @@ diskreaderr:
     mov bx, diskreaderrstr
     call printstr
     
-    jmp $
+    jmp $ ; jump endlessly here because we have failed to advance to the other code section anyways
