@@ -30,8 +30,8 @@ jmp prog_space
 
 jmp exit
 
-%include "rlm_print.asm"
-%include "read_disk.asm"
+%include "extra/real/print.asm"
+%include "extra/real/read_disk.asm"
 
 exit:
     jmp $
