@@ -1,4 +1,4 @@
-;    boot.asm, rlm_print.asm, read_disk.asm, extended.asm - Legacy BIOS Bootloader for c0rry 
+;    boot.asm, print.asm, read_disk.asm, extended.asm, enagdt.asm, cpuid.asm, paging.asm - Legacy BIOS Bootloader for c0rry 
 ;    Copyright (C) 2022  1nekomata
 ;
 ;    This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ exit:
 greetings:
     db "Good Morning, Mothafucka!", 13, 10, 0
 version:
-    db "Welcome to project_c0rry v0.0", 13, 10, 10, 10, 0
+    db "Welcome to project_c0rry v0.1", 13, 10, 10, 10, 0
 
 times 510-($-$$) db 0
 db 0x55, 0xaa
