@@ -15,7 +15,11 @@ coming soon(trademark)
 
 
 ## Source Code Folder Structure
-    src/              contains the source code and Makefile
+    src/                    contains the source code and Makefile
+        extra/              some code that is useful but hidden; should probably rename it some point
+              real/         real mode specific code
+              protected/    protected mode specific code
+              long/         long mode specific code
 
 ## How to Compile?
 
