@@ -28,11 +28,11 @@ g_desc: ; some info in enagdt.asm.md section "enagdt.asm - g_desc"
 code_seg equ (g_code_seg_desc - g_null_desc)
 data_seg equ (g_data_seg_desc - g_null_desc)
 
-[bits 32] ; to be compatible with the 32.bit address space
+[bits 32] ; to be compatible with the 32-bit address space
 
 gdt64edit:
     mov [g_code_seg_desc + 6], byte 10101111b ; change the flags of the code segment
     mov [g_data_seg_desc + 6], byte 10101111b ; change the flags of the data segment
     ret ; return
 
-[bits 16] ; so we wont break anything else
+[bits 16] ; switch back to 16-bit so we wont break anything else

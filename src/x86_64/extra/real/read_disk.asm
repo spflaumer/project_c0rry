@@ -1,9 +1,9 @@
-prog_space equ 0x7e00
+prog_space equ 0x8000
 
 read_disk:
     mov ah, 0x02
     mov bx, prog_space
-    mov al, 4 ; amount of sectors to read
+    mov al, 32 ; amount of sectors to read
     mov dl, [boot_disk] ; disk to read from
     mov ch, 0x00 ; cylinder
     mov dh, 0x00 ; disk head
