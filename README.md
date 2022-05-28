@@ -4,8 +4,12 @@
 
 project_c0rry is the bootloader of the attempt to create a Minimalistic Operating System, including and a yet to be named Kernel, with a yet to be named Text(perhaps somewhere down the line even Graphical) User Environment.
 
-## Is this for UEFI?
-No, UEFI is coming soon ish(trademark)
+## Current capabilities
+
+Booting on a BIOS System(technically also UEFI System as long as it still supports BIOS), switching into Protected Mode(32-bit Mode) and/or Long Mode(64-bit Mode), depending on what Architechture you would install the Bootloader as, load and start a Kernel written in C/C++
+
+## UEFI when?
+UEFI is coming soon ish(trademark)
 
 ## How to Compile?
 
