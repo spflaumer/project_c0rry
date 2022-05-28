@@ -9,6 +9,10 @@ No, UEFI is coming soon ish(trademark)
 
 ## How to Compile?
 
+You *will* need a x86_64-elf compatible or i386-elf compatible cross-toolchain! You can change the default prefix (x86_64-elf- for x86_64 and i386-elf- for i386) by either `export CP=<newprefix>` or `CP=<newprefix> make`. Same goes for the compiler with `export CC=<othercompiler>` or `CC=<othercompiler> make`
+
+Clang has not been tested to work yet!
+
 Simply change the working directory to `src` in the Terminal and execute `make` then `make qemu` for your own safety.
 In case you would want to use a different emulator like bochs, add boot.flp, that will appear within "src/" after running `make`, as a Floppy and set it up to Boot from it. Also make sure the Emulator is Legacy BIOS compatible, as this Project isn't UEFI, *yet*
 
