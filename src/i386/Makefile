@@ -1,15 +1,15 @@
-# you can choose a different compiler by using `CC=<compiler prefix> make`
+# you can choose a different compiler by using `CP=<compiler prefix> make`
 # the compiler needs to be capable of producing x86_64 compatible ELF binaries
 
-CC = x86_64-elf-
-NT = elf64
-M = -m64
+CP = i386-elf-
+NT = elf
+M = -m32
 
 build:
 	nasm boot.asm -f bin -o bootloader.bin
 	nasm extended.asm -f ${NT} -o extended.o
-	${CC}gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -Wall ${M} -c ../testkernel.c -o kernel.o
-	${CC}ld -T"linker.ld"
+	${CP}gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -Wall ${M} -c ../testkernel.c -o kernel.o
+	${CP}ld -T"linker.ld"
 	cat bootloader.bin kernel.bin > boot.flp
 	@rm bootloader.bin kernel.bin extended.o kernel.o
 clean:
