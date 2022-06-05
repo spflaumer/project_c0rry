@@ -14,19 +14,27 @@
 ;    You should have received a copy of the GNU General Public License
 ;    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+[bits 16]
+
 [org 0x7c00]
 
-mov bp, 0x7c00
-mov sp, bp
+jmp 0:entry
 
-mov bx, greetings
-call printstr
-mov bx, version
-call printstr
+entry:
+    mov ax, 0
+    mov bp, 0x7c00
+    mov ss, ax
+    mov sp, bp
 
-call read_disk
+    mov bx, greetings
+    call printstr
+    mov bx, version
+    call printstr
 
-jmp prog_space
+    call read_disk
+
+    jmp prog_space
+
 
 jmp exit
 
