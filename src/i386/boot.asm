@@ -21,6 +21,10 @@
 jmp 0:entry
 
 entry:
+    xor ax, ax
+    mov ds, ax
+    cld
+
     mov ax, 0
     mov bp, 0x7c00
     mov ss, ax
