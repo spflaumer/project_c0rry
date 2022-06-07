@@ -25,10 +25,12 @@ entry:
     mov ds, ax
     cld
 
-    mov ax, 0
     mov bp, 0x7c00
+    mov es, ax
     mov ss, ax
     mov sp, bp
+
+    mov [boot_disk], dl
 
     mov bx, greetings
     call printstr
