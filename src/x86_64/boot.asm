@@ -18,17 +18,19 @@
 
 [org 0x7c00]
 
-jmp 0:entry
+jmp 0:entry ; far jump to set ourselves to 0x0000:0x7c00; should prevent some errors
 
 entry:
-    xor ax, ax
-    mov ds, ax
+    xor ax, ax ; set ax and then segments to 0
+    mov ds, ax ; data segment
     cld
 
     mov bp, 0x7c00
-    mov es, ax
-    mov ss, ax
-    mov sp, bp
+    mov es, ax ; extra segment
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax ; stack segment
+    mov sp, bp ; stack pointer
 
     mov [boot_disk], dl
 
@@ -37,12 +39,12 @@ entry:
     mov bx, version
     call printstr
 
-    call read_disk
+    call read_disk ; read the second part of the bootloader from the disk
 
-    jmp prog_space
+    jmp prog_space ; jmp to it
 
-%include "extra/real/print.asm"
-%include "extra/real/read_disk.asm"
+%include "extra/real/print.asm" ; print
+%include "extra/real/read_disk.asm" ; and disk read routines
 
 exit:
     jmp $
