@@ -18,17 +18,19 @@
 
 [org 0x7c00]
 
-jmp 0:entry
+jmp 0:entry ; far jump to 0x0000:0x7c00 to prevent from loading to a different address and breaking stuff
 
 entry:
-    xor ax, ax
-    mov ds, ax
+    xor ax, ax ; set ax and then use it to set the segments to 0
+    mov ds, ax ; data segment
     cld
 
-    mov bp, 0x7c00
-    mov ss, ax
-    mov es, ax
-    mov sp, bp
+    mov bp, 0x7c00 ; stack base pointer
+    mov ss, ax ; stack segment
+    mov es, ax ; extra segment
+    mov fs, ax
+    mov gx, ax
+    mov sp, bp ; stack pointer
 
     mov [boot_disk], dl
 
