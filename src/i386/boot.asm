@@ -29,7 +29,7 @@ entry:
     mov ss, ax ; stack segment
     mov es, ax ; extra segment
     mov fs, ax
-    mov gx, ax
+    mov gs, ax
     mov sp, bp ; stack pointer
 
     mov [boot_disk], dl
