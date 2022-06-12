@@ -81,6 +81,9 @@ enasse:
     or ax 0b1100000000 ; set bits 9 and 10 to 1
     mov cr4, rax ; apply changes
 
+    .nsprt:
+        jmp $
+
     ret
 
 nsprt:
