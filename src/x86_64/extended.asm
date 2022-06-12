@@ -65,6 +65,11 @@ lmstart:
     jmp $
 
 enasse:
+    mov eax, 0x1
+    cpuid ; get cpuid
+    test edx, 1<<25 ; test for SSE support
+    jz nsprt ; end the bootloader
+
     mov rax, cr0 ; get cr0
     and ax, 0b11111101 ; set them up
     or ax, 0b00000001
@@ -77,6 +82,9 @@ enasse:
     mov cr4, rax ; apply changes
 
     ret
+
+nsprt:
+    jmp $ ; add a handler later
 
 pminfo:
     db 13, 10, "Trying to enter Protected Mode and Long Mode afterwards... see you on the other side!", 0
