@@ -67,7 +67,7 @@ enasse:
     mov cr4, eax ; apply changes
 
     .nsprt:
-        jmp $
+        ret
 
     ret
 
