@@ -50,6 +50,11 @@ pmstart: ; protected mode entry
     jmp $ ; jump endlessly once we return from the kernel
 
 enasse:
+    mov eax, 0x1
+    cpuid ; get cpuid
+    test edx, 1<<25 ; test for SSE support
+    jz .nsprt ; end the bootloader
+
     mov eax, cr0 ; get cr0
     and ax, 0b11111101 ; set them up
     or ax, 0b00000001 
@@ -60,6 +65,9 @@ enasse:
     mov eax, cr4 ; get cr4
     or ax, 0b1100000000 ; set bits 9 and 10 to 1
     mov cr4, eax ; apply changes
+
+    .nsprt:
+        jmp $
 
     ret
 
