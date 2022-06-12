@@ -51,8 +51,8 @@ pmstart: ; protected mode entry
 [extern _start]
 
 lmstart:
-    mov ebp, 0x90000 ; moving stack base to a different point
-    mov esp, ebp
+    ;mov ebp, 0x90000 ; moving stack base to a different point
+    ;mov esp, ebp
 
     mov edi, 0xb8000 ; store, in the text mode video memory address,
     mov rax, 0x1f201f201f201f20 ; "space" with a white font on blue background
