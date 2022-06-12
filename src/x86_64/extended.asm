@@ -34,8 +34,8 @@ pmstart: ; protected mode entry
     mov fs, ax
     mov gs, ax
 
-    mov ebp, 0x90000 ; moving stack base to a different point
-    mov esp, ebp ; moving stack pointer there as well; now our stack is a little larger
+    ;mov ebp, 0x90000 ; moving stack base to a different point
+    ;mov esp, ebp ; moving stack pointer there as well; now our stack is a little larger
 
     ; mov [0xb8000], byte 'G' ; a very basic way to print a letter to the screen
 
@@ -58,9 +58,25 @@ lmstart:
     mov rax, 0x1f201f201f201f20 ; "space" with a white font on blue background
     mov ecx, 500 ; 500
     rep stosq ; times repeatedly
+
+    call enasse ; enable SSE extension
     call _start ; enter test kernel
 
     jmp $
+
+enasse:
+    mov rax, cr0 ; get cr0
+    and ax, 0b11111101 ; set them up
+    or ax, 0b00000001
+    mov cr0, rax ; apply changes
+
+    xor rax, rax ; clear the register just in case
+
+    mov rax, cr4 ; get cr4
+    or ax 0b1100000000 ; set bits 9 and 10 to 1
+    mov cr4, rax ; apply changes
+
+    ret
 
 pminfo:
     db 13, 10, "Trying to enter Protected Mode and Long Mode afterwards... see you on the other side!", 0

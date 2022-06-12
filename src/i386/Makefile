@@ -11,6 +11,6 @@ build:
 	cat bootloader.bin kernel.bin > boot.flp
 	@rm bootloader.bin kernel.bin extended.o kernel.o
 clean:
-	rm bootloader.bin kernel.o kernel.bin extended.o || rm boot.flp
+	@rm bootloader.bin kernel.o kernel.bin extended.o 2&>/dev/null || rm boot.flp 2&>/dev/null || echo "clean"
 qemu:
 	qemu-system-x86_64 -fda boot.flp -d int -no-reboot

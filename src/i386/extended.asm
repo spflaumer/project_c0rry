@@ -37,10 +37,31 @@ pmstart: ; protected mode entry
     ;mov ebp, 0x90000 ; moving stack base to a different point
     ;mov esp, ebp ; moving stack pointer there as well; now our stack is a little larger
 
+    mov edi, 0xb8000 ; store, in the text mode video memory address,
+    mov eax, 0x1f201f201f201f20 ; "space" with a white font on blue background
+    mov ecx, 1000 ; 1000
+    rep stosd ; times repeatedly
+
+    call enasse ; enable sse extension
+
     [extern _start] ; start from kernel
     call _start ; enter kernel
 
     jmp $ ; jump endlessly once we return from the kernel
+
+enasse:
+    mov eax, cr0 ; get cr0
+    and ax, 0b11111101 ; set them up
+    or ax, 0b00000001 
+    mov cr0, eax ; apply changes
+
+    xor eax, eax ; clear the register just in case
+
+    mov eax, cr4 ; get cr4
+    or ax, 0b1100000000 ; set bits 9 and 10 to 1
+    mov cr4, eax ; apply changes
+
+    ret
 
 pminfo:
     db 13, 10, "Trying to enter Protected Mode and Long Mode afterwards... see you on the other side!", 0
