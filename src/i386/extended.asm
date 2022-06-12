@@ -34,8 +34,8 @@ pmstart: ; protected mode entry
     mov fs, ax
     mov gs, ax
 
-    mov ebp, 0x90000 ; moving stack base to a different point
-    mov esp, ebp ; moving stack pointer there as well; now our stack is a little larger
+    ;mov ebp, 0x90000 ; moving stack base to a different point
+    ;mov esp, ebp ; moving stack pointer there as well; now our stack is a little larger
 
     [extern _start] ; start from kernel
     call _start ; enter kernel
